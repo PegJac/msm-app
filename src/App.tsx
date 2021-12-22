@@ -21,11 +21,7 @@ function App() {
               <GenrePicker />
             </>}
           />
-          <Route path="/genre/:id" element={
-            <>
-              <Thumbnails />
-            </>}
-          />
+          <Route path="/genre/:id" element={<Thumbnails />} />
         </Routes>
       </BrowserRouter>
     </div >
