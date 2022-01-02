@@ -11,9 +11,9 @@ import same from '../assets/thumbnails/same.jpg';
 import science from '../assets/thumbnails/pics-science.jpg';
 import homo from '../assets/thumbnails/homo.jpg';
 
-
 export interface ITitle {
     imgUrl: string;
+    id: string;
     titleSwedish: string;
     titleEnglish: string;
     videoUrl: string;
@@ -21,7 +21,17 @@ export interface ITitle {
     description: string;
 }
 
-export const titles: ITitle[] = [
+export const defaultTitle: ITitle = {
+    imgUrl: "",
+    id: "",
+    titleSwedish: "",
+    titleEnglish: "",
+    videoUrl: "",
+    category: "",
+    description: ""
+}
+
+/* export const titles: ITitle[] = [
     { imgUrl: digital, titleSwedish: "Vår Digitala Planet", titleEnglish: "Digital Planet", videoUrl: "597926310", category: "science", description: "" },
     { imgUrl: automation, titleSwedish: "Den Automatiserade Framtiden", titleEnglish: "Automation and the Future of Jobs", videoUrl: "597927557", category: "science", description: "" },
     { imgUrl: mobile, titleSwedish: "Den Mobila Revolutionen", titleEnglish: "The mobile revolution", videoUrl: "597928037", category: "science", description: "" },
@@ -34,4 +44,4 @@ export const titles: ITitle[] = [
     { imgUrl: same, titleSwedish: "Samernas tid", titleEnglish: "Laponia - The age of the Sami", videoUrl: "597759068", category: "history", description: "" },
     { imgUrl: science, titleSwedish: "Bilderna som förändrade vetenskapen", titleEnglish: "Shocking Exposures", videoUrl: "597742203 ", category: "history", description: "" },
     { imgUrl: homo, titleSwedish: "På resa med Homo Sapiens", titleEnglish: "On the road with Homo Sapiens", videoUrl: "597756310 ", category: "history", description: "" }
-]
+] */

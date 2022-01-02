@@ -1,15 +1,19 @@
 import { Link } from "react-router-dom"
 
+import "./../styles/header.scss"
+
 export const Header = () => {
 
     return (
-        <header>
-            <Link to="/">
-                <h1>msm</h1>
-            </Link>
-            <Link to="/contact">
-                <h1>contact</h1>
-            </Link>
-        </header>
+        <div className="headerContainer">
+            <header>
+                <Link to="/">
+                    <p>msm</p>
+                </Link>
+                <Link to="/contact">
+                    <p>contact</p>
+                </Link>
+            </header>
+        </div>
     )
 }
