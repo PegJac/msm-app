@@ -18,7 +18,9 @@ export interface ITitle {
     titleEnglish: string;
     videoUrl: string;
     category: string;
-    description: string;
+    descriptionSV: string;
+    descriptionEN: string;
+    imDbId: string;
 }
 
 export const defaultTitle: ITitle = {
@@ -28,7 +30,9 @@ export const defaultTitle: ITitle = {
     titleEnglish: "",
     videoUrl: "",
     category: "",
-    description: ""
+    descriptionSV: "",
+    descriptionEN: "",
+    imDbId: ""
 }
 
 /* export const titles: ITitle[] = [

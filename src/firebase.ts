@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app"
 import { collection, getFirestore } from "firebase/firestore"
 import { getStorage, ref } from "firebase/storage"
+import { getAuth } from "firebase/auth"
 
 export const firebaseApp = initializeApp({
     apiKey: "AIzaSyC7_Guvm1Hy53QeGMnZhPCLa2mWc6cqvZ0",
@@ -12,9 +13,15 @@ export const firebaseApp = initializeApp({
     measurementId: "G-C28KPS9WWP"
 });
 
-export const db = getFirestore(firebaseApp)
+//db
+export const db = getFirestore()
 export const messagesRef = collection(db, "messages")
 export const titleRef = collection(db, "titles")
+export const featureRef = collection(db, "featured")
 
+//img storage
 const storage = getStorage();
 export const storageRef = ref(storage);
+
+//auth
+export const auth = getAuth(firebaseApp)

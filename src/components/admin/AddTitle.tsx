@@ -1,4 +1,4 @@
-import { Button, ButtonGroup, Tooltip } from "@mui/material"
+import { Button, ButtonGroup, FormControlLabel, Radio, RadioGroup, TextField, Tooltip, Typography } from "@mui/material"
 import { addDoc } from "firebase/firestore"
 import { useState } from "react"
 import { titleRef } from "../../firebase"
@@ -8,8 +8,6 @@ export const AddTitle = () => {
     const [title, setTitle] = useState<ITitle>(defaultTitle)
 
     const handleForm = (id: string, value: string) => {
-        console.log(id, value)
-
         setTitle(prev => {
             return {
                 ...prev,
@@ -19,54 +17,90 @@ export const AddTitle = () => {
     }
 
     const handleSubmit = () => {
-        addDoc(titleRef, title)
-        setTitle(defaultTitle)
+        if (title.titleSwedish && title.titleEnglish && title.imgUrl && title.category && title.descriptionSV && title.descriptionEN && title.category) {
+            addDoc(titleRef, title)
+            return setTitle(defaultTitle)
+        }
+
+        alert("Missing info")
     }
 
     return (
         <div className="addTitleContainer">
-            <h3>Add title</h3>
-            <form id="form">
-                <label htmlFor="titleSwedish">Title Swedish</label>
-                <input type="text" id="titleSwedish" value={title.titleSwedish} onChange={(e) => handleForm("titleSwedish", e.target.value)} />
+            <Typography variant="h4">Add title</Typography>
+            <form id="form" aria-label="form">
+                <TextField
+                    autoFocus
+                    margin="dense"
+                    id="name"
+                    label={"Title Swedish"}
+                    variant="outlined"
+                    value={title.titleSwedish}
+                    onChange={(e) => handleForm("titleSwedish", e.target.value)} />
 
-                <label htmlFor="titleEnglish">Title English</label>
-                <input type="text" id="titleEnglish" value={title.titleEnglish} onChange={(e) => handleForm("titleEnglish", e.target.value)} />
+                <TextField
+                    margin="dense"
+                    id="name"
+                    label={"Title English"}
+                    variant="outlined"
+                    value={title.titleEnglish}
+                    onChange={(e) => handleForm("titleEnglish", e.target.value)} />
 
-                <label htmlFor="imgUrl">Image URL</label>
-                <input type="text" id="imgUrl" value={title.imgUrl} onChange={(e) => handleForm("imgUrl", e.target.value)} />
+                <TextField
+                    margin="dense"
+                    id="name"
+                    label={"Image URL"}
+                    variant="outlined"
+                    value={title.imgUrl}
+                    onChange={(e) => handleForm("imgUrl", e.target.value)} />
 
-                <Tooltip placement="top" arrow title="Ex. 597928037 (https://vimeo.com/597928037)">
-                    <label htmlFor="videoUrl">Video URL</label>
+                <Tooltip placement="right" arrow title="Ex. tt4199034 (https://www.imdb.com/title/tt4199034/)">
+                    <TextField
+                        margin="dense"
+                        id="name"
+                        label={"ImDb ID"}
+                        variant="outlined"
+                        value={title.imDbId}
+                        onChange={(e) => handleForm("imDbId", e.target.value)} />
                 </Tooltip>
-                <input type="text" id="videoUrl" value={title.videoUrl} onChange={(e) => handleForm("videoUrl", e.target.value)} />
 
-                <label htmlFor="description">Description</label>
-                <input type="text" id="description" value={title.description} onChange={(e) => handleForm("description", e.target.value)} />
+                <Tooltip placement="right" arrow title="Ex. 597928037 (https://vimeo.com/597928037)">
+                    <TextField
+                        margin="dense"
+                        id="name"
+                        label={"Vimeo URL"}
+                        variant="outlined"
+                        value={title.videoUrl}
+                        onChange={(e) => handleForm("videoUrl", e.target.value)} />
+                </Tooltip>
 
-                <label htmlFor="category">Genre</label>
+                <TextField
+                    margin="dense"
+                    id="name"
+                    label={"Description Swedish"}
+                    multiline
+                    variant="outlined"
+                    value={title.descriptionSV}
+                    onChange={(e) => handleForm("descriptionSV", e.target.value)} />
 
-                <br />
-                <ButtonGroup variant="text" aria-label="text button group">
-                    <Button onClick={() => handleForm("category", "culture")}>Culture</Button>
-                    <Button onClick={() => handleForm("category", "science")}>Science & Tech</Button>
-                    <Button onClick={() => handleForm("category", "history")}>History</Button>
-                </ButtonGroup>
-                <br />
-                <button type='button' onClick={handleSubmit}>Send</button>
+                <TextField
+                    margin="dense"
+                    id="name"
+                    label={"Description English"}
+                    multiline
+                    variant="outlined"
+                    value={title.descriptionEN}
+                    onChange={(e) => handleForm("descriptionEN", e.target.value)} />
+
+                <RadioGroup className="radios" row aria-label="genre" name="row-radio-buttons-group" onChange={((e) => handleForm("category", e.target.value))}>
+                    <FormControlLabel value="culture" control={<Radio />} label="Culture" />
+                    <FormControlLabel value="science" control={<Radio />} label="Science & Tech" />
+                    <FormControlLabel value="history" control={<Radio />} label="History" />
+                </RadioGroup>
+
+                <Button className="submitButton" type='button' variant="contained" onClick={handleSubmit}>Submit</Button>
+                <Button className="submitButton" type='button' variant="contained" onClick={() => window.history.go(-1)}>Back</Button>
             </form>
-
-            title.titleSwedish: {title.titleSwedish}
-            <br />
-            title.titleEnglish: {title.titleEnglish}
-            <br />
-            title.imgUrl: {title.imgUrl}
-            <br />
-            title.videoUrl: {title.videoUrl}
-            <br />
-            title.category: {title.category}
-            <br />
-            title.description: {title.description}
-        </div>
+        </div >
     )
 }
