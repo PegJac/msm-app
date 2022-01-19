@@ -1,11 +1,53 @@
-.thumbnailsContainer {
-    background-color: blueviolet;
-
+.tabPanel {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    
     .thumbnailContainer {
-        width: 500px;
+        display: flex;
+        justify-content: center;
+        margin: 1em;
+        margin-bottom: 2em;
+        
+        .card {
+            width: 350px;
+            background-color: rgb(245, 245, 245);
 
-        .thumbnail {
-            width: 100%;
+            .cardMedia {
+                height: 194px;
+            }
+        }
+    }
+}
+
+.thumbnailsContainer {
+        .trailerCard {
+        max-height: 80vh;
+        max-width: 90vw;
+        overflow: scroll;
+        display: flex;
+        flex-direction: column;
+        
+        .cardContent{
+            margin: 0 1em;
+        }
+        
+        //Tablet
+        @media screen and(min-width: 700px){
+            .cardContent{
+                margin: 0 2em;
+            }        
+        }
+        
+        //Laptop
+        @media screen and(min-width: 1000px){
+            max-width: 60vw;
+        }
+        
+        //Desktop
+        @media screen and(min-width: 1280px){
+            max-width: 50vw;
         }
     }
 }
