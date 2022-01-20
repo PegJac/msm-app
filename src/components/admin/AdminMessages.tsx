@@ -42,13 +42,13 @@ export const AdminMessages = () => {
             `${process.env.REACT_APP_EMAIL_USER}`
         ).then((response) => {
             console.log('SUCCESS!', response.status, response.text);
+            setReplyForm("")
+            setReplyMessage(undefined)
+            return deleteDoc(doc(db, "messages", replyMessage!.id))
         }).catch((err) => {
-            alert('FAILED...' + err);
+            console.log(err)
+            alert('FAILED...' + err.text);
         });
-
-        setReplyForm("")
-        setReplyMessage(undefined)
-        deleteDoc(doc(db, "messages", replyMessage!.id))
     }
 
     return (

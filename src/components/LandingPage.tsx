@@ -33,6 +33,7 @@ export const LandingPage = () => {
             <div className="heroContainer">
                 <div className="heroM">
                     <Typography className="m" variant='h1'>m</Typography>
+                    <Typography className="landingText" variant='body1'>Magnus Sjöström Media.</Typography>
                     <Typography className="landingText" variant='body1'>Journalism and TV in the fields of science, tech, history and culture.</Typography>
                 </div>
                 <GenrePicker />

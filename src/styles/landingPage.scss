@@ -4,7 +4,7 @@
     top: 0;
     z-index: -10;
     padding-bottom: 5em;
-    max-width: 100vw;
+    width: 100%;
 
     .heroContainer {
         background-image: url("../assets/image-from-rawpixel-id-440055-jpeg.jpg");
@@ -15,7 +15,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
         height: 100vh;
         color: white;
 

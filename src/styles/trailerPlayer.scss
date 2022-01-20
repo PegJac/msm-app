@@ -5,6 +5,19 @@
         max-width: 100%;
         display: inline;
     }
+
+    .button {
+        display: flex;
+        justify-content: space-evenly;
+        width: max-content;
+        margin-left: 1em;
+
+        .icon {
+            height: 2em;
+            margin-right: .5em;
+            color: black;
+        }
+    }
     
     //Large mobiles/small tablets
     @media screen and(min-width: 500px){

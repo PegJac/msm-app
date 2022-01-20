@@ -1,10 +1,12 @@
 import { send } from '@emailjs/browser'
 import { useEffect, useState } from 'react'
-import StarRateRoundedIcon from '@mui/icons-material/StarRateRounded';
 import ReactPlayer from 'react-player/lazy'
+import { Button, Typography } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImdb } from '@fortawesome/free-brands-svg-icons'
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import '../styles/trailerPlayer.scss'
-import { Typography } from '@mui/material';
 
 interface ITrailerPlayerProps {
     url: string
@@ -50,9 +52,11 @@ export const TrailerPlayer = (props: ITrailerPlayerProps) => {
                     className="reactPlayer" onError={handleError} />
             }
             <Typography className="cardContent" variant='h4' title={props.title}>{props.title}</Typography>
-            <Typography className="cardContent" variant='body1'>{imdbObj ? <a href={`https://www.imdb.com/title/${props.imdb}`}>
-                <StarRateRoundedIcon />
-                IMDb: {imdbObj.imDb}/10</a> : null}</Typography>
+            <Button href={`https://www.imdb.com/title/${props.imdb}`} className="button" variant='outlined'>
+                {imdbObj ?
+                    <> <FontAwesomeIcon className='icon' icon={faImdb as IconProp} />{imdbObj.imDb}/10</>
+                    : null}
+            </Button>
         </div>
     )
 }
