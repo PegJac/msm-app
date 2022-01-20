@@ -82,7 +82,6 @@ export const AdminTitles = () => {
 
     const removeFeature = (item: Data<DocumentData>) => {
         if (featuredTitle && item.id == featuredTitle!.id) {
-            console.log(item)
             deleteDoc(doc(featureRef, "feature"))
             setFeaturedTitle(undefined)
         }

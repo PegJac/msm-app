@@ -1,38 +1,41 @@
 import { render, fireEvent } from '@testing-library/react'
-import { GenrePicker } from '../components/GenrePicker'
-import { LandingPage } from '../components/LandingPage'
-import { Thumbnails } from './../components/Thumbnails'
+import { Thumbnails } from '../components/Thumbnails'
+import { titleRef } from '../firebase'
+import { useCollectionData } from "react-firebase-hooks/firestore"
 
-it('Does thumbnails get rendered', () => {
-    const { queryByTitle } = render(<Thumbnails genre='history' />)
-    const thumbnail = queryByTitle('thumbnails')
-    expect(thumbnail).toBeTruthy()
-})
+describe('Thumbnails', () => {
+    it('revieves thumbnails', () => {
+        const Test = () => {
+            const [snapshot] = useCollectionData(titleRef)
+            expect(snapshot.length).toBeGreaterThan(1)
+        }
+    })
 
-describe('Genre tabs', () => {
-    it('should display correct thumbnails', () => {
+    it('renders thumbnails', () => {
+        const { queryByTitle } = render(<Thumbnails genre='science' />)
+        const thumbnail = queryByTitle('thumbnails')
+        expect(thumbnail).toBeTruthy()
+    })
+
+    it('should display culture thumbnails', () => {
         const { queryByTitle } = render(<Thumbnails genre='history' />)
         const culture = queryByTitle('culture')
         fireEvent.click(culture)
         const heading = queryByTitle('heading')
         expect(heading.innerHTML).toBe('culture')
     })
-})
 
-/* describe('click genre tab', () => {
-    it('onClick', () => {
-        const { queryByTitle } = render(<Thumbnails genre='history' />)
-        const culture = queryByTitle('culture')
-        fireEvent.click(culture)
-    })
-}) */
-
-/* describe('click genre on landing page', () => {
-    it('onClickGenrePicker', () => {
-        const { queryByTitle } = render(<GenrePicker />)
-        const culture = queryByTitle('culture')
-        fireEvent.click(culture)
+    it('should display science thumbnails', () => {
+        const { queryByTitle } = render(<Thumbnails genre='culture' />)
+        const science = queryByTitle('science')
+        fireEvent.click(science)
         const heading = queryByTitle('heading')
-        expect(heading.innerHTML).toBe('culture')
+        expect(heading.innerHTML).toBe('science')
     })
-}) */
+
+    it('should display history thumbnails by prop', () => {
+        const { queryByTitle } = render(<Thumbnails genre='history' />)
+        const heading = queryByTitle('heading')
+        expect(heading.innerHTML).toBe('history')
+    })
+})

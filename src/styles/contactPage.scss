@@ -1,27 +1,22 @@
 .contactContainer {
-    padding-bottom: 2em;
+    padding-bottom: 5em;
 
-    .aboutContainer{
+    .aboutContainer {
         display: flex;
         flex-direction: column;
-
-        .firstSection {
+ 
+        img {
+            border-radius: 50%;
+            align-self: center;
+            max-width: 300px;
+            width: 60%;
+        }
+        
+        .introduction {
+            margin: 1em 1em 0;
             display: flex;
+            align-items: flex-start;
             flex-direction: column;
-            
-            img {
-                border-radius: 50%;
-                align-self: center;
-                max-width: 300px;
-                width: 60%;
-            }
-            
-            .introduction {
-                margin: 1em 1em 0;
-                display: flex;
-                align-items: flex-start;
-                flex-direction: column;
-            }
         }
     }
 
@@ -33,10 +28,21 @@
         .introduction {
             display: flex;
             align-items: flex-start;
+            justify-content: space-between;
             flex-direction: column;
+            height: 7em;
+
+            .button {
+                margin: .5em;
+
+                .icon {
+                    height: 25px;
+                }
+            }
 
             .aboutButton {
                 width: max-content;
+                margin-bottom: .25em;
             }
         }
 
@@ -49,8 +55,21 @@
     
             .sendButton {
                 margin-top: .5em;
+
+                .spinner {
+                    animation: spin 1500ms infinite linear;
+                }
             }
         }
+    }
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
     }
 }
 
@@ -65,54 +84,6 @@
     } 
 }
 
-//Laptop
-/* @media screen and (min-width: 1020px){
-    .contactContainer {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        width: 70vw;
-
-        .aboutContainer {
-
-            .firstSection {
-                flex-direction: row;
-                flex-wrap: wrap;
-                align-items: center;
-                justify-content: center;
-                width: 100%;
-
-                img {
-                    width: 40%;
-                }
-                
-                .introduction {
-                    width: 50%;
-                }
-            }
-        }
-        
-        .secondSection {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            width: 60vw;
-            justify-content: space-between;
-
-            .introduction {
-                width: 50%;
-                margin-top: 2.2em;
-            }
-
-            .form {
-                width: 50%;
-                margin-top: 0px;
-            }
-        }
-    }
-} */
-
 //Desktop
 @media screen and (min-width: 1020px){
     .contactContainer {
@@ -122,49 +93,30 @@
         flex-direction: row;
         flex-wrap: wrap;
         justify-content: center;
-        // width: 70vw;
 
         .aboutContainer {
             width: 40%;
+            justify-content: center;
+            flex-direction: column;
 
-            .firstSection {
-                flex-direction: column;
-                // flex-direction: row;
-                // flex-wrap: wrap;
-                // align-items: center;
-                justify-content: center;
-                width: 100%;
-
-/*                 img {
-                    width: 40%;
-                } */
-                
-                .introduction {
-                    width: 70%;
-                    margin-top: 2em;
-                    // width: 50%;
-                }
+            .introduction {
+                width: 70%;
+                margin-top: 2em;
             }
         }
         
         .secondSection {
             flex-direction: column;
-            width: 100%;
             display: flex;
-            // flex-direction: row;
-            // flex-wrap: wrap;
-            // width: 60vw;
             justify-content: space-between;
 
             .introduction {
                 width: 100%;
-                // width: 50%;
                 margin-top: 2.2em;
             }
 
             .form {
                 width: 100%;
-                // width: 50%;
                 margin-top: 2.5em;
             }
         }

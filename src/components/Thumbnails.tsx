@@ -1,14 +1,12 @@
 import { SyntheticEvent, useState } from "react"
-
-import { TrailerPlayer } from "./TrailerPlayer"
-
-import '../styles/thumbnails.scss'
+import { Data } from "react-firebase-hooks/firestore/dist/firestore/types"
 import { DocumentData } from "firebase/firestore"
 import { useCollectionData } from "react-firebase-hooks/firestore"
 import { titleRef } from "../firebase"
+import { TrailerPlayer } from "./TrailerPlayer"
 import { Backdrop, Box, Card, CardContent, CardHeader, CardMedia, Dialog, Tab, Typography } from "@mui/material"
-import { Data } from "react-firebase-hooks/firestore/dist/firestore/types"
 import { TabContext, TabList, TabPanel } from "@mui/lab"
+import '../styles/thumbnails.scss'
 
 interface IThumbnails {
     genre: string
@@ -23,8 +21,6 @@ export const Thumbnails = (props: IThumbnails) => {
         setThumbnailSelected(title)
     }
 
-    console.log(window.location.href)
-
     const handleClose = () => {
         setThumbnailSelected(undefined)
     }
@@ -38,7 +34,7 @@ export const Thumbnails = (props: IThumbnails) => {
             return (
                 <div key={i} className="thumbnailContainer" title={value}>
                     <Card className="card" onClick={() => selectThumbnail(title)} >
-                        <CardHeader
+                        <CardHeader className="cardHeader"
                             title={title.titleEnglish ? title.titleEnglish : title.titleSwedish}
                         // subheader={title.titleEnglish ? title.titleSwedish : null}
                         />
@@ -58,7 +54,6 @@ export const Thumbnails = (props: IThumbnails) => {
             )
         }
     })
-
 
     return (
         <div className="thumbnailsContainer" title="thumbnails">
@@ -80,28 +75,30 @@ export const Thumbnails = (props: IThumbnails) => {
                     <TabPanel className={value == "history" ? "tabPanel" : undefined} value="history">
                         {titleCards}
                     </TabPanel>
-                    <Typography title="heading" variant="body1">{value}</Typography>
+                    <Typography title="heading" display={"none"}>{value}</Typography>
                 </TabContext>
             </Box>
 
             {/* VIDEO PLAYER */}
-            {thumbnailSelected ?
-                <Backdrop
-                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                    open={thumbnailSelected ? true : false}>
-                    <Dialog onClose={handleClose} open={thumbnailSelected ? true : false}>
-                        <Card className="trailerCard">
-                            <CardMedia className="trailerPlayer">
-                                <TrailerPlayer url={thumbnailSelected.videoUrl} imdb={thumbnailSelected.imDbId} title={thumbnailSelected.titleSwedish} />
-                            </CardMedia>
-                            <CardContent className="cardContent">
-                                <Typography variant="body2" color="text.secondary">
-                                    {thumbnailSelected.descriptionEN ? thumbnailSelected.descriptionEN : thumbnailSelected.descriptionSV}
-                                </Typography>
-                            </CardContent>
-                        </Card></Dialog>
-                </Backdrop>
-                : null}
-        </div>
+            {
+                thumbnailSelected ?
+                    <Backdrop
+                        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                        open={thumbnailSelected ? true : false}>
+                        <Dialog onClose={handleClose} open={thumbnailSelected ? true : false}>
+                            <Card className="trailerCard">
+                                <CardMedia className="trailerPlayer">
+                                    <TrailerPlayer url={thumbnailSelected.videoUrl} imdb={thumbnailSelected.imDbId} title={thumbnailSelected.titleSwedish} />
+                                </CardMedia>
+                                <CardContent className="cardContent">
+                                    <Typography variant="body2" color="text.secondary">
+                                        {thumbnailSelected.descriptionEN ? thumbnailSelected.descriptionEN : thumbnailSelected.descriptionSV}
+                                    </Typography>
+                                </CardContent>
+                            </Card></Dialog>
+                    </Backdrop>
+                    : null
+            }
+        </div >
     )
 }

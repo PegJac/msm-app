@@ -7,8 +7,6 @@ import { GenrePicker } from "./GenrePicker"
 
 export const LandingPage = () => {
     const [snapshot, loading, error] = useCollectionData((featureRef), { idField: "id" })
-
-    console.log(snapshot)
     const favourite = snapshot?.map((fav, i) => {
         return (
             <div className="featuredContainer" key={i} style={{ background: "black" }}>
@@ -36,10 +34,11 @@ export const LandingPage = () => {
                 <div className="heroM">
                     <Typography className="m" variant='h1'>m</Typography>
                     <Typography className="landingText" variant='body1'>Journalism and TV in the fields of science, tech, history and culture.</Typography>
-                    <Typography className="landingText" variant='body1'>Browse previous productions below.</Typography>
                 </div>
                 <GenrePicker />
                 <div className="genrePickerContainer">
+                    <Typography className="landingText" variant='body2' fontWeight={"light"}>Browse previous productions:</Typography>
+
                     <ButtonGroup className="buttonGroup">
                         <Link className="category" to="/genre/culture" style={{ textDecoration: "none" }}>
                             <Button title="culture" className="categoryButton" variant="text">

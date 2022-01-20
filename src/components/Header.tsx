@@ -2,8 +2,10 @@ import { Button, Typography } from "@mui/material"
 import { onAuthStateChanged, signOut } from "firebase/auth"
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { auth } from "../firebase"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSignOut } from '@fortawesome/free-solid-svg-icons'
 
 import "./../styles/header.scss"
 
@@ -48,7 +50,7 @@ export const Header = () => {
                             <Typography color={color} variant='body2'>Admin</Typography>
                         </Button>
                         <Button className="links logoutButton" onClick={logout}>
-                            <Typography color={color} variant='body2'>Sign Out</Typography>
+                            <FontAwesomeIcon color={color} icon={faSignOut} />
                         </Button>
                     </div>
                     : <Button className="links" href="/contact">

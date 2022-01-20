@@ -5,7 +5,7 @@ import { Contact } from './components/Contact';
 import { Admin } from './components/admin/Admin';
 import { PageNotFound } from './components/PageNotFound';
 
-import './App.css';
+import './App.scss';
 import './styles/landingPage.scss'
 import { AddTitle } from './components/admin/AddTitle';
 import { LandingPage } from './components/LandingPage';
@@ -29,6 +29,5 @@ function App() {
     </div >
   );
 }
-
 
 export default App;

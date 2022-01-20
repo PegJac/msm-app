@@ -9,11 +9,23 @@
         justify-content: center;
         margin: 1em;
         margin-bottom: 2em;
+
         
         .card {
-            width: 350px;
+            width: 20em;
             background-color: rgb(245, 245, 245);
-
+            transition: all .2s ease-in-out;
+            box-shadow: .3em .3em .5em rgb(196, 196, 196);
+            
+            
+            &:hover {
+                -webkit-transform: scale(1);
+                -ms-transform: scale(1.2);
+                transform: scale(1.02);                
+            }
+            .cardHeader {
+                height: 3em;
+            }
             .cardMedia {
                 height: 194px;
             }
