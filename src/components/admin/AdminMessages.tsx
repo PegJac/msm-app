@@ -30,7 +30,21 @@ export const AdminMessages = () => {
     }
 
     const replyMessageFunction = () => {
-
+        send(
+            `${process.env.REACT_APP_EMAIL_SERVICE}`,
+            `${process.env.REACT_APP_EMAIL_TEMPLATE_RESPONSE}`,
+            {
+                email: replyMessage!.email,
+                message: replyForm,
+                reply_to: "testmsm25@gmail.com",
+                original_message: replyMessage!.message
+            },
+            `${process.env.REACT_APP_EMAIL_USER}`
+        ).then((response) => {
+            console.log('SUCCESS!', response.status, response.text);
+        }).catch((err) => {
+            alert('FAILED...' + err);
+        });
 
         setReplyForm("")
         setReplyMessage(undefined)

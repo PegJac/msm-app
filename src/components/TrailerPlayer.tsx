@@ -32,6 +32,15 @@ export const TrailerPlayer = (props: ITrailerPlayerProps) => {
     const handleError = () => {
         setError(true)
 
+        send(
+            `${process.env.REACT_APP_EMAIL_SERVICE}`,
+            `${process.env.REACT_APP_EMAIL_TEMPLATE}`,
+            {
+                from_name: "website",
+                message: `An error occured on website, ${props.title} trailer failed.`
+            },
+            `${process.env.REACT_APP_EMAIL_USER}`
+        )
     }
 
     return (

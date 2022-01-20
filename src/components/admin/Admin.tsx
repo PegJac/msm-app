@@ -37,7 +37,6 @@ export const Admin = () => {
                 loginInfo.email,
                 loginInfo.password
             )
-            console.log(user)
         } catch (error) {
             alert(error);
         }
