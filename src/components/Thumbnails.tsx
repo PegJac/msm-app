@@ -35,9 +35,7 @@ export const Thumbnails = (props: IThumbnails) => {
                 <div key={i} className="thumbnailContainer" title={value}>
                     <Card className="card" onClick={() => selectThumbnail(title)} >
                         <CardHeader className="cardHeader"
-                            title={title.titleEnglish ? title.titleEnglish : title.titleSwedish}
-                        // subheader={title.titleEnglish ? title.titleSwedish : null}
-                        />
+                            title={title.titleSwedish} />
                         <CardMedia
                             className="cardMedia"
                             component="img"
@@ -46,7 +44,7 @@ export const Thumbnails = (props: IThumbnails) => {
                         />
                         <CardContent>
                             <Typography variant="body2" color="text.secondary">
-                                {title.descriptionEN ? title.descriptionEN.slice(0, 200) + "..." : title.descriptionSV.slice(0, 200) + "..."}
+                                {title.descriptionSV.slice(0, 200) + "..."}
                             </Typography>
                         </CardContent>
                     </Card>
@@ -80,25 +78,23 @@ export const Thumbnails = (props: IThumbnails) => {
             </Box>
 
             {/* VIDEO PLAYER */}
-            {
-                thumbnailSelected ?
-                    <Backdrop
-                        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-                        open={thumbnailSelected ? true : false}>
-                        <Dialog onClose={handleClose} open={thumbnailSelected ? true : false}>
-                            <Card className="trailerCard">
-                                <CardMedia className="trailerPlayer">
-                                    <TrailerPlayer url={thumbnailSelected.videoUrl} imdb={thumbnailSelected.imDbId} title={thumbnailSelected.titleSwedish} />
-                                </CardMedia>
-                                <CardContent className="cardContent">
-                                    <Typography variant="body2" color="text.secondary">
-                                        {thumbnailSelected.descriptionEN ? thumbnailSelected.descriptionEN : thumbnailSelected.descriptionSV}
-                                    </Typography>
-                                </CardContent>
-                            </Card></Dialog>
-                    </Backdrop>
-                    : null
-            }
-        </div >
+            {thumbnailSelected ?
+                <Backdrop
+                    sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                    open={thumbnailSelected ? true : false}>
+                    <Dialog onClose={handleClose} open={thumbnailSelected ? true : false}>
+                        <Card className="trailerCard">
+                            <CardMedia className="trailerPlayer">
+                                <TrailerPlayer url={thumbnailSelected.videoUrl} imdb={thumbnailSelected.imDbId} title={thumbnailSelected.titleSwedish} />
+                            </CardMedia>
+                            <CardContent className="cardContent">
+                                <Typography variant="body2" color="text.secondary">
+                                    {thumbnailSelected.descriptionSV}
+                                </Typography>
+                            </CardContent>
+                        </Card></Dialog>
+                </Backdrop>
+                : null}
+        </div>
     )
 }

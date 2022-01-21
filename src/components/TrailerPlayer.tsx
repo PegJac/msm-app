@@ -52,11 +52,9 @@ export const TrailerPlayer = (props: ITrailerPlayerProps) => {
                     className="reactPlayer" onError={handleError} />
             }
             <Typography className="cardContent" variant='h4' title={props.title}>{props.title}</Typography>
-            <Button href={`https://www.imdb.com/title/${props.imdb}`} className="button" variant='outlined'>
-                {imdbObj ?
-                    <> <FontAwesomeIcon className='icon' icon={faImdb as IconProp} />{imdbObj.imDb}/10</>
-                    : null}
-            </Button>
+            {imdbObj ? <Button href={`https://www.imdb.com/title/${props.imdb}`} className="button" variant='outlined'>
+                <><FontAwesomeIcon className='icon' icon={faImdb as IconProp} />{imdbObj.imDb}/10</>
+            </Button> : null}
         </div>
     )
 }
