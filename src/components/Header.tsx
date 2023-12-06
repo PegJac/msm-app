@@ -16,7 +16,7 @@ export const Header = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname == "/") {
+    if (location.pathname === "/") {
       return setIsOnHomePage(true);
     }
     setIsOnHomePage(false);

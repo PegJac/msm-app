@@ -62,6 +62,7 @@ export const Thumbnails = (props: IThumbnails) => {
         </div>
       );
     }
+    return null;
   });
 
   return (
@@ -76,19 +77,19 @@ export const Thumbnails = (props: IThumbnails) => {
             </TabList>
           </Box>
           <TabPanel
-            className={value == "culture" ? "tabPanel" : undefined}
+            className={value === "culture" ? "tabPanel" : undefined}
             value="culture"
           >
             {titleCards}
           </TabPanel>
           <TabPanel
-            className={value == "science" ? "tabPanel" : undefined}
+            className={value === "science" ? "tabPanel" : undefined}
             value="science"
           >
             {titleCards}
           </TabPanel>
           <TabPanel
-            className={value == "history" ? "tabPanel" : undefined}
+            className={value === "history" ? "tabPanel" : undefined}
             value="history"
           >
             {titleCards}

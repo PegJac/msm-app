@@ -38,7 +38,7 @@ export const Admin = () => {
 
   const login = async () => {
     try {
-      const user = await signInWithEmailAndPassword(
+      await signInWithEmailAndPassword(
         auth,
         loginInfo.email,
         loginInfo.password

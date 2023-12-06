@@ -36,10 +36,10 @@ export const AdminTitles = () => {
       if (
         featuredCollection &&
         featuredCollection.length >= 1 &&
-        item.id == featuredCollection[0].id
+        item.id === featuredCollection[0].id
       ) {
-        setFeaturedTitle(item);
-      }
+        return setFeaturedTitle(item);
+      } else return null;
     });
   }, [snapshot, featuredCollection]);
 
@@ -48,7 +48,7 @@ export const AdminTitles = () => {
       return setDeleteError(true);
     }
 
-    if (featuredTitle && id.id == featuredTitle!.id) {
+    if (featuredTitle && id.id === featuredTitle!.id) {
       deleteDoc(doc(featureRef, "feature"));
       setDeleteError(false);
     }
@@ -81,7 +81,7 @@ export const AdminTitles = () => {
       editItem.descriptionSV &&
       editItem.category
     ) {
-      if (featuredTitle && editItem!.id == featuredTitle!.id) {
+      if (featuredTitle && editItem!.id === featuredTitle!.id) {
         setDoc(doc(featureRef, "feature"), editItem);
       }
       setDoc(doc(titleRef, editItem!.id), editItem);
@@ -117,7 +117,7 @@ export const AdminTitles = () => {
   });
 
   const removeFeature = (item: Data<DocumentData>) => {
-    if (featuredTitle && item.id == featuredTitle!.id) {
+    if (featuredTitle && item.id === featuredTitle!.id) {
       deleteDoc(doc(featureRef, "feature"));
       setFeaturedTitle(undefined);
     }
@@ -134,7 +134,7 @@ export const AdminTitles = () => {
       {/* EDIT FORM */}
       {editItem ? (
         <Dialog
-          open={editItem == defaultTitle ? false : true}
+          open={editItem === defaultTitle ? false : true}
           onClose={() => setEditItem(defaultTitle)}
         >
           <DialogTitle>Edit {editItem.titleSwedish}</DialogTitle>
@@ -216,7 +216,7 @@ export const AdminTitles = () => {
             />
           </DialogContent>
           <DialogActions>
-            {featuredTitle?.titleSwedish == editItem.titleSwedish ? (
+            {featuredTitle?.titleSwedish === editItem.titleSwedish ? (
               <Button
                 onClick={() =>
                   removeFeature(editItem as unknown as Data<DocumentData>)
