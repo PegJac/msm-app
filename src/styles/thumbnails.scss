@@ -46,19 +46,19 @@
         }
         
         //Tablet
-        @media screen and(min-width: 700px){
+        @media screen and ( min-width: 700px ) {
             .cardContent{
                 margin: 0 2em;
             }        
         }
         
         //Laptop
-        @media screen and(min-width: 1000px){
+        @media screen and ( min-width: 1000px ) {
             max-width: 60vw;
         }
         
         //Desktop
-        @media screen and(min-width: 1280px){
+        @media screen and ( min-width: 1280px ) {
             max-width: 50vw;
         }
     }
