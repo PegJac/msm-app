@@ -46,7 +46,7 @@ export const Thumbnails = (props: IThumbnails) => {
       return (
         <div key={i} className="thumbnailContainer" title={value}>
           <Card className="card" onClick={() => selectThumbnail(title)}>
-            <CardHeader className="cardHeader" title={title.titleSwedish} />
+            <CardHeader className="cardHeader" title={title.titleEnglish} />
             <CardMedia
               className="cardMedia"
               component="img"
@@ -55,7 +55,7 @@ export const Thumbnails = (props: IThumbnails) => {
             />
             <CardContent>
               <Typography variant="body2" color="text.secondary">
-                {title.descriptionSV.slice(0, 200) + "..."}
+                {title.descriptionEN?.slice(0, 200) + "..."}
               </Typography>
             </CardContent>
           </Card>
@@ -112,12 +112,12 @@ export const Thumbnails = (props: IThumbnails) => {
                 <TrailerPlayer
                   url={thumbnailSelected.videoUrl}
                   imdb={thumbnailSelected.imDbId}
-                  title={thumbnailSelected.titleSwedish}
+                  title={thumbnailSelected.titleEnglish}
                 />
               </CardMedia>
               <CardContent className="cardContent">
                 <Typography variant="body2" color="text.secondary">
-                  {thumbnailSelected.descriptionSV}
+                  {thumbnailSelected.descriptionEN}
                 </Typography>
               </CardContent>
             </Card>

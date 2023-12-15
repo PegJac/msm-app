@@ -26,10 +26,10 @@ export const LandingPage = () => {
         </div>
         <div className="featuredWrapper">
           <Typography color="white" variant="h5">
-            {fav.titleSwedish}
+            {fav.titleEnglish}
           </Typography>
           <Typography color="white" variant="body1">
-            {fav.descriptionSV}
+            {fav.descriptionEN}
           </Typography>
         </div>
       </div>
