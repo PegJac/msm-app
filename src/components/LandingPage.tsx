@@ -1,19 +1,19 @@
+import { useState } from "react";
 import { Button, ButtonGroup, Typography } from "@mui/material";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import { featureRef } from "../firebase";
 import { GenrePicker } from "./GenrePicker";
+import { Thumbnails } from "./Thumbnails";
 
 export const LandingPage = () => {
   const [snapshot] = useCollectionData(featureRef, { idField: "id" });
+  const [genre, setGenre] = useState("culture");
+
   const favourite = snapshot?.map((fav, i) => {
     return (
-      <div
-        className="featuredContainer"
-        key={i}
-        style={{ background: "black" }}
-      >
+      <div className="featuredContainer" key={i}>
         <div className="featuredWrapper">
           <ReactPlayer
             width={"100%"}
@@ -25,11 +25,11 @@ export const LandingPage = () => {
           />
         </div>
         <div className="featuredWrapper">
-          <Typography color="white" variant="h5">
-            {fav.titleSwedish}
+          <Typography color="white" variant="h3">
+            {fav.titleEnglish}
           </Typography>
           <Typography color="white" variant="body1">
-            {fav.descriptionSV}
+            {fav.descriptionEN}
           </Typography>
         </div>
       </div>
@@ -51,50 +51,37 @@ export const LandingPage = () => {
             culture.
           </Typography>
         </div>
-        <GenrePicker />
-        <div className="genrePickerContainer">
-          <Typography
-            className="landingText"
-            variant="body2"
-            fontWeight={"light"}
-          >
-            Browse previous productions:
-          </Typography>
-
-          <ButtonGroup className="buttonGroup">
-            <Link
-              className="category"
-              to="/genre/culture"
-              style={{ textDecoration: "none" }}
-            >
-              <Button title="culture" className="categoryButton" variant="text">
-                <Typography variant="h6">Culture</Typography>
-              </Button>
-            </Link>
-
-            <Link
-              className="category"
-              to="/genre/science"
-              style={{ textDecoration: "none" }}
-            >
-              <Button className="categoryButton" variant="text">
-                <Typography variant="h6">Science & Tech</Typography>
-              </Button>
-            </Link>
-
-            <Link
-              className="category"
-              to="/genre/history"
-              style={{ textDecoration: "none" }}
-            >
-              <Button className="categoryButton" variant="text">
-                <Typography variant="h6">History</Typography>
-              </Button>
-            </Link>
-          </ButtonGroup>
-        </div>
       </div>
       {favourite}
+      <div className="genrePickerContainer">
+        <ButtonGroup className="buttonGroup">
+          <Button
+            title="culture"
+            className="categoryButton"
+            variant="text"
+            onClick={() => setGenre("culture")}
+          >
+            <Typography variant="h6">Culture</Typography>
+          </Button>
+
+          <Button
+            className="categoryButton"
+            variant="text"
+            onClick={() => setGenre("science")}
+          >
+            <Typography variant="h6">Science & Tech</Typography>
+          </Button>
+
+          <Button
+            className="categoryButton"
+            variant="text"
+            onClick={() => setGenre("history")}
+          >
+            <Typography variant="h6">History</Typography>
+          </Button>
+        </ButtonGroup>
+      </div>
+      <Thumbnails genre={genre} />
     </div>
   );
 };

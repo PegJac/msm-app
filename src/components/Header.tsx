@@ -36,11 +36,11 @@ export const Header = () => {
     <div className="headerContainer">
       <header>
         <Link className="link" to="/">
-          {isOnHomePage ? (
-            <img src={require("./../assets/transp_besk.png")} alt="logo" />
-          ) : (
-            <img src={require("./../assets/logonew_besk.png")} alt="logo" />
-          )}
+          {/* {isOnHomePage ? ( */}
+          <img src={require("./../assets/transp_besk.png")} alt="logo" />
+          {/* ) : (
+             <img src={require("./../assets/logonew_besk.png")} alt="logo" />
+           )} */}
         </Link>
         {isLoggedIn ? (
           <div style={{ display: "flex" }}>

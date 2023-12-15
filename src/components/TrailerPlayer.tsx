@@ -53,6 +53,7 @@ export const TrailerPlayer = (props: ITrailerPlayerProps) => {
           url={`https://vimeo.com/${props.url}`}
           className="reactPlayer"
           onError={handleError}
+          controls
         />
       )}
       <Typography className="cardContent" variant="h4" title={props.title}>

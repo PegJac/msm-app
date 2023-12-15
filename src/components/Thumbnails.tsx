@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from "react";
+import React, { useState } from "react";
 import { Data } from "react-firebase-hooks/firestore/dist/firestore/types";
 import { DocumentData } from "firebase/firestore";
 import { useCollectionData } from "react-firebase-hooks/firestore";
@@ -22,12 +22,11 @@ interface IThumbnails {
   genre: string;
 }
 
-export const Thumbnails = (props: IThumbnails) => {
+export const Thumbnails: React.FC<IThumbnails> = ({ genre }) => {
   const [thumbnailSelected, setThumbnailSelected] = useState<
     Data<DocumentData> | undefined
   >();
   const [snapshot] = useCollectionData(titleRef, { idField: "id" });
-  const [value, setValue] = useState(props.genre);
 
   const selectThumbnail = (title: Data<DocumentData>) => {
     setThumbnailSelected(title);
@@ -37,27 +36,18 @@ export const Thumbnails = (props: IThumbnails) => {
     setThumbnailSelected(undefined);
   };
 
-  const handleChange = (event: SyntheticEvent, newValue: string) => {
-    setValue(newValue);
-  };
-
   const titleCards = snapshot?.map((title, i) => {
-    if (title.category === value) {
+    if (title.category === genre) {
       return (
-        <div key={i} className="thumbnailContainer" title={value}>
+        <div key={i} className="thumbnailContainer" title={genre}>
           <Card className="card" onClick={() => selectThumbnail(title)}>
-            <CardHeader className="cardHeader" title={title.titleSwedish} />
             <CardMedia
               className="cardMedia"
               component="img"
               image={title.imgUrl}
               alt={title.titleEnglish}
             />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">
-                {title.descriptionSV.slice(0, 200) + "..."}
-              </Typography>
-            </CardContent>
+            <CardHeader className="cardHeader" title={title.titleEnglish} />
           </Card>
         </div>
       );
@@ -68,35 +58,25 @@ export const Thumbnails = (props: IThumbnails) => {
   return (
     <div className="thumbnailsContainer" title="thumbnails">
       <Box sx={{ width: "100%", typography: "body1" }}>
-        <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <TabList onChange={handleChange} aria-label="lab API tabs example">
-              <Tab title="culture" label="Culture" value="culture" />
-              <Tab title="science" label="Science & tech" value="science" />
-              <Tab title="history" label="History" value="history" />
-            </TabList>
-          </Box>
+        <TabContext value={genre}>
           <TabPanel
-            className={value === "culture" ? "tabPanel" : undefined}
+            className={genre === "culture" ? "tabPanel" : undefined}
             value="culture"
           >
             {titleCards}
           </TabPanel>
           <TabPanel
-            className={value === "science" ? "tabPanel" : undefined}
+            className={genre === "science" ? "tabPanel" : undefined}
             value="science"
           >
             {titleCards}
           </TabPanel>
           <TabPanel
-            className={value === "history" ? "tabPanel" : undefined}
+            className={genre === "history" ? "tabPanel" : undefined}
             value="history"
           >
             {titleCards}
           </TabPanel>
-          <Typography title="heading" display={"none"}>
-            {value}
-          </Typography>
         </TabContext>
       </Box>
 
@@ -107,17 +87,17 @@ export const Thumbnails = (props: IThumbnails) => {
           open={thumbnailSelected ? true : false}
         >
           <Dialog onClose={handleClose} open={thumbnailSelected ? true : false}>
-            <Card className="trailerCard">
+            <Card className="trailerCard" style={{ background: "red" }}>
               <CardMedia className="trailerPlayer">
                 <TrailerPlayer
                   url={thumbnailSelected.videoUrl}
                   imdb={thumbnailSelected.imDbId}
-                  title={thumbnailSelected.titleSwedish}
+                  title={thumbnailSelected.titleEnglish}
                 />
               </CardMedia>
               <CardContent className="cardContent">
                 <Typography variant="body2" color="text.secondary">
-                  {thumbnailSelected.descriptionSV}
+                  {thumbnailSelected.descriptionEN}
                 </Typography>
               </CardContent>
             </Card>
